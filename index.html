@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>damiotf.fun</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="section" id="section1">
+        <div class="textGLOWNY">
+            <div class="siatka">
+                <div class="linie-siatki"></div>
+            </div>
+            <div class="maska-siatki"></div>
+            <div class="crt" id="crtOverlay"></div>
+            <div class="opis">
+                <h2 class="tytul">DAMIOTF</h2>
+                <div id="pisane" class="pisane"></div>
+                <div class="arrow-down" onclick="scrollToNextSection()">↓</div>
+            </div>
+        </div>
+        <a href="https://github.com/DAMIOTF" target="_blank" class="gejhub">GITHUB.COM/DAMIOTF | © 2024 damiotf.fun All Rights Reserved</a>
+    </div>
+
+    <div class="section" id="section2">
+        <h2 class="tytul">root@DAMIOTF:~$ WHOAMI</h2>
+        <div class="description">
+            My name is Damian i have <span id="age"></span>
+            and I am 3D Artist. I specialize in creating realistic and engaging 3D graphics
+            using tools such as Blender, Adobe Substance 3D Painter, and Adobe Photoshop.
+            My interests also include programming in Python, C#, HTML, and CSS.
+            In my free time, I develop my skills in game development, working with advanced engines like Unreal Engine. 
+            My experience encompasses not only technical aspects but also project management and teamwork, 
+            allowing me to collaborate effectively with other professionals.
+            Additionally, I possess solid knowledge of computer network administration, gained while studying to become an IT Technician.
+            I am an ambitious person, open to new projects and connections, and I can manage my time flexibly to complete tasks efficiently.
+            Feel free to contact me if you are looking for a dedicated and versatile specialist 
+            to collaborate on projects related to 3D graphics, programming, or game development.
+        </div>
+        <div class="kontakt">Contact: damiotf@gmail.com</div>
+        <div class="portfolio-options">
+            <a href="https://www.artstation.com/damiotf" class="portfolio-box">
+                <div class="box-content">
+                    <span>3D ART</span>
+                </div>
+            </a>
+            <a href="https://github.com/DAMIOTF" class="portfolio-box">
+                <div class="box-content">
+                    <span>DEV</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="toggle-crt">
+        <label for="crtToggle">disable crt effect</label>
+        <input type="checkbox" id="crtToggle" onclick="toggleCrt()">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Scroll logic
+        $(document).ready(function() {
+            let isScrolling = false;
+            let currentSection = 1;
+            const sections = $('.section');
+
+            $(window).on('wheel', function(event) {
+                if (isScrolling) return;
+
+                isScrolling = true;
+                if (event.originalEvent.deltaY > 0 && currentSection < sections.length) {
+                    currentSection++;
+                } else if (event.originalEvent.deltaY < 0 && currentSection > 1) {
+                    currentSection--;
+                }
+
+                $('html, body').animate({
+                    scrollTop: $(sections[currentSection - 1]).offset().top
+                }, 1000, function() {
+                    isScrolling = false;
+                });
+            });
+        });
+
+        // Scroll Function
+        function scrollToNextSection() {
+            let isScrolling = false;
+            let currentSection = 1;
+            const sections = $('.section');
+
+            if (isScrolling) return;
+
+            isScrolling = true;
+            currentSection++;
+            $('html, body').animate({
+                scrollTop: $(sections[currentSection - 1]).offset().top
+            }, 1000, function() {
+                isScrolling = false;
+            });
+        }
+
+        // Liczenie od daty
+        function calculateAge() {
+            const birthDate = new Date('2007-04-12T12:00:00');
+            const now = new Date();
+            const diff = now - birthDate;
+
+            const ageDate = new Date(diff);
+            const years = ageDate.getUTCFullYear() - 1970;
+            const months = ageDate.getUTCMonth();
+            const days = ageDate.getUTCDate() - 1;
+            const hours = ageDate.getUTCHours();
+
+            document.getElementById('age').innerText = `${years} years ${months} months ${days} days ${hours} hours`;
+        }
+
+        // Calculate age immediately and then update every hour
+        calculateAge();
+        setInterval(calculateAge, 3600000); // 3600000 ms = 1 hour
+
+        // Toggle CRT overlay
+        function toggleCrt() {
+            const crtOverlay = document.getElementById('crtOverlay');
+            crtOverlay.classList.toggle('crt');
+        }
+    </script>
+</body>
+</html>
