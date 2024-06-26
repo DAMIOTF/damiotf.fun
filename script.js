@@ -1,5 +1,5 @@
 var pisane = new Typed('#pisane', {
-    strings: ['3D Designer', 'Python C# HTML dev', 'More coming soon...'],
+    strings: ['3D Designer', 'I ♡ Blender','Python C#', 'HTML Css'],
     typeSpeed: 50,
     startDelay: 1200,
     showCursor: true,
