@@ -1,1 +1,1 @@
-[<img src="image.png>](https://damiotf.fun/image.png)
+[![Preview](https://damiotf.fun/image.png)
